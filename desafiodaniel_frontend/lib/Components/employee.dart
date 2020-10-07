@@ -17,41 +17,7 @@ class _EmployeeState extends State<Employee> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.blue,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.work, color: Colors.white),
-            title: Text(
-              'Departamentos',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt, color: Colors.white),
-            title: Text(
-              'Projetos',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.white),
-            title: Text(
-              'Funcionários',
-              style: TextStyle(color: Colors.white),
-            ),
-          ),
-        ],
-        // currentIndex: null,
-        selectedItemColor: Colors.blue[800],
-        //onTap: null,
-      ),
-      appBar: AppBar(
-        title: Text("Zion"),
-        centerTitle: true,
-      ),
-      body: Column(
+    return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -99,8 +65,7 @@ class _EmployeeState extends State<Employee> {
                 itemCount: 3),
           ),
         ],
-      ),
-    );
+      );
   }
 }
 

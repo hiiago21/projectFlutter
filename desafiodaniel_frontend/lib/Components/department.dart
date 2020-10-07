@@ -12,23 +12,9 @@ class Department extends StatefulWidget {
 }
 
 class _DepartmentState extends State<Department> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: ButtonNavigation(),
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: Column(
+    return  Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -76,8 +62,7 @@ class _DepartmentState extends State<Department> {
                 itemCount: 3),
           ),
         ],
-      ),
-    );
+      );
   }
 }
 
