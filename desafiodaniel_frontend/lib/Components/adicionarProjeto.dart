@@ -60,117 +60,96 @@ class _AdicionarProjetoState extends State<AdicionarProjeto> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: Container(
-        padding: new EdgeInsets.all(10.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: Text("Nome do Projeto",
-                  style: TextStyle(fontSize: 25.0, color: Colors.blue)),
-            ),
-            Container(
-              child: Row(
-                children: <Widget>[
+      appBar: AppBar(
+        title: Text('Cadastrar Funcionario'),
+        centerTitle: true,
+      ),
+      body:
+      Padding(
+        padding: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0),
+        child:
+          Column(
+            children: <Widget>[
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Nome do Projeto',
+                          labelStyle: TextStyle(fontSize: 16.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Row(children: <Widget>[
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        labelText: 'Nome do funcionario',
-                        labelStyle: TextStyle(fontSize: 25.0),
+                        labelText: 'Descrição',
+                        labelStyle: TextStyle(fontSize: 16.0),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: Row(children: <Widget>[
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Salário',
-                      labelStyle: TextStyle(fontSize: 25.0),
-                    ),
-                  ),
-                )
-              ]),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectDateStart == null
-                          ? 'Data de Criação'
-                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectDateStart)}',
-                    ),
-                  ),
-                  FlatButton(
-                    textColor: Theme.of(context).primaryColor,
-                    child: Text(
-                      'Selecionar Data',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: _showDatePickerStart,
                   )
-                ],
+                ]),
               ),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      _selectDateStart == null
-                          ? 'Data de Entrega'
-                          : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectDateFinal)}',
-                    ),
-                  ),
-                  FlatButton(
-                    textColor: Theme.of(context).primaryColor,
-                    child: Text(
-                      'Selecionar Data',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectDateStart == null
+                            ? 'Data de Criação'
+                            : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectDateStart)}',
                       ),
                     ),
-                    onPressed: _showDatePickerFinal,
-                  )
-                ],
-              ),
-            ),
-            Column(
-              children: [Expanded(
-                child: new DropdownButton<Employee>(
-                  value: dropValue,
-                  onChanged: (Employee newValue) {
-                    setState(() {
-                      dropValue = newValue;
-                    });
-                  },
-                  items: funcionarios.map((Employee emp) {
-                    return new DropdownMenuItem<Employee>(
-                      value: emp,
-                      child: new Text(
-                        emp.name,
-                        style: new TextStyle(color: Colors.black),
+                    FlatButton(
+                      textColor: Theme.of(context).primaryColor,
+                      child: Text(
+                        'Selecionar Data',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    );
-                  }).toList(),
+                      onPressed: _showDatePickerStart,
+                    )
+                  ],
                 ),
-              ),],),
-
-          ],
-        ),
-      ),
+              ),
+              Container(
+                height: 70,
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Text(
+                        _selectDateStart == null
+                            ? 'Data de Entrega'
+                            : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectDateFinal)}',
+                      ),
+                    ),
+                    FlatButton(
+                      textColor: Theme.of(context).primaryColor,
+                      child: Text(
+                        'Selecionar Data',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      onPressed: _showDatePickerFinal,
+                    )
+                  ],
+                ),
+              ),
+            ],
+          )
+        )
     );
   }
 }

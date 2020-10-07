@@ -111,7 +111,7 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
                       child: Text(
                         _selectDate == null
                             ? 'Data de Nascimento'
-                            : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectDate)}',
+                            : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectDate)}',
                       ),
                     ),
                     FlatButton(
