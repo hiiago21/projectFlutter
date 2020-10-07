@@ -1,3 +1,4 @@
+import 'package:desafiodaniel_frontend/Components/adicionarProjeto.dart';
 import 'package:flutter/material.dart';
 import 'adicionarDepto.dart';
 import 'adicionarFuncionario.dart';
@@ -20,7 +21,9 @@ class ZionApp extends StatelessWidget {
       routes: {
         '/home': (context) => Home(),
         '/AdicionarDepartamento': (context) => AdicionarDepartamento(),
-        '/AdicionarFuncionario': (context) => AdicionarFincionario()
+        '/AdicionarFuncionario': (context) => AdicionarFincionario(),
+        '/AdicionarProjeto': (context) => AdicionarProjeto(),
+
       }
     );
   }
