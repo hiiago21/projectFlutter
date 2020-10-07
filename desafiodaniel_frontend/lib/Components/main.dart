@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'adicionarDepto.dart';
+import 'adicionarFuncionario.dart';
 import 'home.dart';
 
 void main() {
@@ -14,6 +16,12 @@ class ZionApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Home(),
+      initialRoute: '/home',
+      routes: {
+        '/home': (context) => Home(),
+        '/AdicionarDepartamento': (context) => AdicionarDepartamento(),
+        '/AdicionarFuncionario': (context) => AdicionarFincionario()
+      }
     );
   }
 }

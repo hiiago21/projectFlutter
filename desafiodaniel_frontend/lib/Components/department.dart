@@ -4,7 +4,6 @@ import 'buttonNavigation.dart';
 
 class Department extends StatefulWidget {
   Department({Key key, this.title}) : super(key: key);
-
   final String title;
 
   @override
@@ -12,6 +11,9 @@ class Department extends StatefulWidget {
 }
 
 class _DepartmentState extends State<Department> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -44,6 +46,8 @@ class _DepartmentState extends State<Department> {
                     Icons.add,
                     color: Colors.blue,
                   ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/AdicionarDepartamento');}
                 ),
                 Expanded(
                   child: TextField(

@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 class AdicionarFincionario extends StatefulWidget {
   @override
   _AdicionarFincionarioState createState() => _AdicionarFincionarioState();
+  static const routeName = '/AdicionarDepartamento';
 }
 
 class _AdicionarFincionarioState extends State<AdicionarFincionario> {
@@ -26,17 +27,25 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
     });
   }
 
+  void _adicionarFuncionario(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return new Scaffold(
+        appBar: AppBar(
+          title: Text('Cadastrar Funcionario'),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0),
+          child:
+          Container(
           padding: new EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Center(
-                child: Text("Cadastrar Funcionário",
-                    style: TextStyle(fontSize: 25.0, color: Colors.blue)),
-              ),
               Container(
                 child: Row(
                   children: <Widget>[
@@ -44,7 +53,7 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
                       child: TextField(
                         decoration: InputDecoration(
                           labelText: 'Nome do funcionario',
-                          labelStyle: TextStyle(fontSize: 25.0),
+                          labelStyle: TextStyle(fontSize: 16.0),
                         ),
                       ),
                     ),
@@ -57,20 +66,21 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
                     child: TextField(
                       decoration: InputDecoration(
                         labelText: 'Salário',
-                        labelStyle: TextStyle(fontSize: 25.0),
+                        labelStyle: TextStyle(fontSize: 16.0),
                       ),
                     ),
                   )
                 ]),
               ),
               Container(
+                margin: EdgeInsets.fromLTRB(0, 0, 0, 16.0),
                 height: 70,
                 child: Row(
                   children: <Widget>[
                     Expanded(
                       child: Text(
                         _selectDate == null
-                            ? 'Data de Aniversário'
+                            ? 'Data de Nascimento'
                             : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectDate)}',
                       ),
                     ),
@@ -87,8 +97,14 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
                   ],
                 ),
               ),
+              Center(
+                child: RaisedButton(
+                  onPressed: _adicionarFuncionario,
+                  child: const Text('Adicionar', style: TextStyle(fontSize: 20)),
+                ),
+              )
             ],
           ),
-    );
+    )));
   }
 }
