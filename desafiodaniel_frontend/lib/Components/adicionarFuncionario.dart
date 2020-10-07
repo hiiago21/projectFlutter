@@ -1,34 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class AdicionarFincionario extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Zion',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MyHomePage(title: 'Zion'),
-    );
-  }
+  _AdicionarFincionarioState createState() => _AdicionarFincionarioState();
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class _AdicionarFincionarioState extends State<AdicionarFincionario> {
   DateTime _selectDate;
 
   _showDatePicker() {
@@ -50,12 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
-      body: new Container(
+    return Container(
           padding: new EdgeInsets.all(10.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -115,60 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ],
-          )),
+          ),
     );
-
-    /*
-    ),
-    )
-    floatingActionButton:
-    Row(
-    mainAxisAlignment: MainAxisAlignment.end,
-    children: [
-    FloatingActionButton(
-    onPressed: () {},
-    tooltip: 'Check',
-    child: Icon(Icons.cancel),
-    ),
-    SizedBox(
-    width: 70.0,
-    ),
-    FloatingActionButton(
-    onPressed: () {},
-    tooltip: 'Check',
-    child: Icon(Icons.check_circle),
-    ),
-    ]),
-    bottomNavigationBar: BottomNavigationBar(
-    backgroundColor: Colors.blue,
-    items: const <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-    icon: Icon(Icons.work, color: Colors.white),
-    title: Text(
-    'Departamentos',
-    style: TextStyle(color: Colors.white),
-    ),
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(Icons.receipt, color: Colors.white),
-    title: Text(
-    'Projetos',
-    style: TextStyle(color: Colors.white),
-    ),
-    ),
-    BottomNavigationBarItem(
-    icon: Icon(Icons.person, color: Colors.white),
-    title: Text(
-    'Funcionários',
-    style: TextStyle(color: Colors.white),
-    ),
-    ),
-    ],
-    // currentIndex: null,
-    selectedItemColor: Colors.blue[800],
-    //onTap: null,
-    ),
-    );
-    */
   }
 }
