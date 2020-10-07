@@ -43,6 +43,8 @@ class _ProjectsState extends State<Projects> {
                     Icons.add,
                     color: Colors.blue,
                   ),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/AdicionarProjeto');}
                 ),
                 Expanded(
                   child: TextField(
