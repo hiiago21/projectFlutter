@@ -27,6 +27,8 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
     });
   }
 
+  List<bool> _selections = [false, false, true];
+
   void _adicionarFuncionario(){
 
   }
@@ -71,6 +73,34 @@ class _AdicionarFincionarioState extends State<AdicionarFincionario> {
                     ),
                   )
                 ]),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 18.0, 0, 0),
+                child:
+                  Center(
+                    child: ToggleButtons(
+                      children: <Widget>[
+                        Text("M", style: TextStyle(fontSize: 16)),
+                        Text("F", style: TextStyle(fontSize: 16)),
+                        Text("?", style: TextStyle(fontSize: 16)),
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+                            if (buttonIndex == index) {
+                              _selections[buttonIndex] = true;
+                            } else {
+                              _selections[buttonIndex] = false;
+                            }
+                          }
+                        });
+                      },
+                      splashColor: Colors.blue,
+                      selectedColor: Colors.blue,
+                      selectedBorderColor: Colors.blue,
+                      isSelected: _selections,
+                    ),
+              )
               ),
               Container(
                 margin: EdgeInsets.fromLTRB(0, 0, 0, 16.0),
