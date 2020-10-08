@@ -1,9 +1,4 @@
-import 'package:desafiodaniel_frontend/Components/adicionarProjeto.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../Utils/Models/department_model.dart';
-import '../Utils/Models/project_model.dart';
-import '../Utils/Models/employee_model.dart';
 import 'AdicionarFuncionario.dart';
 import 'adicionarDepto.dart';
 import 'adicionarProjeto.dart';
@@ -12,16 +7,7 @@ import 'AlterarFuncionario.dart';
 import 'home.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => DepartmentModel()),
-        ChangeNotifierProvider(create: (context) => ProjectModel()),
-        ChangeNotifierProvider(create: (context) => EmployeeModel()),
-      ],
-      child: ZionApp(),
-    ),
-  );
+  runApp(ZionApp());
 }
 
 class ZionApp extends StatelessWidget {

@@ -1,10 +1,10 @@
-import 'package:desafiodaniel_frontend/Utils/Providers/departments_provider.dart';
+import 'package:desafiodaniel_frontend/Utils/Model/department_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Entities/department.dart';
-import '../Utils/Models/department_model.dart';
-import 'package:provider/provider.dart';
 import 'dart:async';
+
+import '../Entities/department.dart';
 
 class DepartmentView extends StatefulWidget {
   DepartmentView({Key key, this.title}) : super(key: key);
@@ -15,20 +15,21 @@ class DepartmentView extends StatefulWidget {
 }
 
 class _DepartmentState extends State<DepartmentView> {
-  List<Department> list = new List<Department>();
+  DepartmentModel dm = new DepartmentModel();
 
-  Future<void> repository() async {
-    DepartmentsProvider dp = new DepartmentsProvider();
-    List<Department> list2 = new List<Department>();
-    list2 = await dp.fetchAllDepartments();
+  List<Department> listview = new List<Department>();
+  Department departmentById;
+
+  Future<void> start() async {
+    List<Department> request = await dm.getAll();
     setState(() {
-      list = list2;
+      listview = request;
     });
   }
 
   @override
   void initState() {
-    repository();
+    start();
     super.initState();
   }
 
@@ -81,9 +82,9 @@ class _DepartmentState extends State<DepartmentView> {
           child: ListView.builder(
               padding: EdgeInsets.only(top: 10.0),
               itemBuilder: (con, ind) {
-                return buildItem(con, ind, list);
+                return buildItem(con, ind, listview);
               },
-              itemCount: list.length),
+              itemCount: listview.length),
         ),
       ],
     );
