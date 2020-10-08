@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../Entities/employee.dart';
+
 class AlterarFuncionario extends StatefulWidget {
+  final Employee emplo;
+
+  AlterarFuncionario({this.emplo}) : super();
+
   @override
   _AlterarFuncionarioState createState() => _AlterarFuncionarioState();
   static const routeName = '/AlterarFuncionario';
@@ -49,7 +55,7 @@ class _AlterarFuncionarioState extends State<AlterarFuncionario> {
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
-                          labelText: 'Nome do funcionario',
+                          labelText: widget.emplo.name,
                           labelStyle: TextStyle(fontSize: 16.0),
                         ),
                       ),
@@ -62,7 +68,7 @@ class _AlterarFuncionarioState extends State<AlterarFuncionario> {
                   Expanded(
                     child: TextField(
                       decoration: InputDecoration(
-                        labelText: 'Salário',
+                        labelText: widget.emplo.salary.toString(),
                         labelStyle: TextStyle(fontSize: 16.0),
                       ),
                     ),

@@ -1,12 +1,29 @@
+import 'package:desafiodaniel_frontend/Utils/Model/employee_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../Entities/employee.dart';
+import 'AlterarFuncionario.dart';
 
-class Employee extends StatefulWidget {
+class EmployeeView extends StatefulWidget {
   @override
   _EmployeeState createState() => _EmployeeState();
 }
 
-class _EmployeeState extends State<Employee> {
+class _EmployeeState extends State<EmployeeView> {
+  TextEditingController findId = TextEditingController();
+
+  EmployeeModel em = new EmployeeModel();
+
+  List<Employee> listview = new List<Employee>();
+  Employee employeeById;
+
+  Future<void> start() async {
+    List<Employee> request = await em.getAll();
+    setState(() {
+      listview = request;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,12 +37,17 @@ class _EmployeeState extends State<Employee> {
                   Icons.search,
                   color: Colors.blue,
                 ),
+                onPressed: () async {
+                  employeeById = await em.getById(int.parse(findId.text));
+                  AlterarFuncionario(emplo: employeeById);
+                },
               ),
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Procurar Funcionário',
                   ),
+                  controller: findId,
                 ),
               ),
             ],

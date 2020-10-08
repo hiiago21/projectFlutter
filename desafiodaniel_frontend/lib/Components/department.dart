@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Entities/department.dart';
 import 'dart:async';
-import '../Entities/department.dart';
 import 'AlterarDepto.dart';
 
 class DepartmentView extends StatefulWidget {

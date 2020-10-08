@@ -1,8 +1,11 @@
+import 'package:desafiodaniel_frontend/Utils/Model/projects_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Projects extends StatefulWidget {
-  Projects({Key key, this.title}) : super(key: key);
+import '../Entities/project.dart';
+
+class ProjectsView extends StatefulWidget {
+  ProjectsView({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -10,60 +13,78 @@ class Projects extends StatefulWidget {
   _ProjectsState createState() => _ProjectsState();
 }
 
-class _ProjectsState extends State<Projects> {
+class _ProjectsState extends State<ProjectsView> {
+  TextEditingController findId = TextEditingController();
+
+  ProjectModel pm = new ProjectModel();
+
+  List<Project> listview = new List<Project>();
+  Project employeeById;
+
+  Future<void> start() async {
+    List<Project> request = await em.getAll();
+    setState(() {
+      listview = request;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.blue,
-                  ),
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.blue,
                 ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Procurar Projeto',
-                    ),
+                onPressed: () async {
+                  employeeById = await pm.getById(int.parse(findId.text));
+                },
+              ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Procurar Projeto',
                   ),
+                  controller: findId,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            child: Row(
-              children: <Widget>[
-                IconButton(
+        ),
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
                   icon: Icon(
                     Icons.add,
                     color: Colors.blue,
                   ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/AdicionarProjeto');}
-                ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Adicionar Projeto',
-                    ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/AdicionarProjeto');
+                  }),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Adicionar Projeto',
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-                padding: EdgeInsets.only(top: 10.0),
-                itemBuilder: buildItem,
-                itemCount: 3),
-          ),
-        ],
-      );
+        ),
+        Expanded(
+          child: ListView.builder(
+              padding: EdgeInsets.only(top: 10.0),
+              itemBuilder: buildItem,
+              itemCount: 3),
+        ),
+      ],
+    );
   }
 }
 

@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   PageController _pageController = PageController();
-  List<Widget> _screens = [DepartmentView(), Projects(), Employee()];
+  List<Widget> _screens = [DepartmentView(), ProjectsView(), EmployeeView()];
 
   int _selectedIndex = 0;
   void _onPageChanged(int index) {
