@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../Entities/department.dart';
+import '../Entities/department.dart';
+
 class AlterarDepto extends StatefulWidget {
+  final Department dep;
+  AlterarDepto({this.dep}) : super();
   @override
   _AlterarDeptoState createState() => _AlterarDeptoState();
   static const routeName = '/AlterarDepto';
@@ -28,7 +33,7 @@ class _AlterarDeptoState extends State<AlterarDepto> {
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(
-                              labelText: 'Nome do departamento',
+                              labelText: widget.dep.name,
                               labelStyle: TextStyle(fontSize: 16.0),
                             ),
                           ),
@@ -43,7 +48,7 @@ class _AlterarDeptoState extends State<AlterarDepto> {
                         Expanded(
                           child: TextField(
                             decoration: InputDecoration(
-                              labelText: 'Descrição do departamento',
+                              labelText: widget.dep.description,
                               labelStyle: TextStyle(fontSize: 16.0),
                             ),
                           ),

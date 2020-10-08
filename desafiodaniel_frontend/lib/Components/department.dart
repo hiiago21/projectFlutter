@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Entities/department.dart';
 import 'dart:async';
-
 import '../Entities/department.dart';
+import 'AlterarDepto.dart';
 
 class DepartmentView extends StatefulWidget {
   DepartmentView({Key key, this.title}) : super(key: key);
@@ -15,6 +15,8 @@ class DepartmentView extends StatefulWidget {
 }
 
 class _DepartmentState extends State<DepartmentView> {
+  TextEditingController findId = TextEditingController();
+
   DepartmentModel dm = new DepartmentModel();
 
   List<Department> listview = new List<Department>();
@@ -46,12 +48,17 @@ class _DepartmentState extends State<DepartmentView> {
                   Icons.search,
                   color: Colors.blue,
                 ),
+                onPressed: () async {
+                  departmentById = await dm.getById(int.parse(findId.text));
+                  AlterarDepto(dep: departmentById);
+                },
               ),
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
                     labelText: 'Procurar Departamento',
                   ),
+                  controller: findId,
                 ),
               ),
             ],

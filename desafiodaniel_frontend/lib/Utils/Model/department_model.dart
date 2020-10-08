@@ -1,4 +1,3 @@
-import '../../Entities/department.dart';
 import 'package:desafiodaniel_frontend/Utils/Providers/departments_provider.dart';
 
 class DepartmentModel {

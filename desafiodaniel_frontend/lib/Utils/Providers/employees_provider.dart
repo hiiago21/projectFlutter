@@ -33,7 +33,7 @@ class EmployeesProvider {
     }
   }
 
-  Future<Employee> fetchEmployeeById(String id) async {
+  Future<Employee> fetchAllEmployee(String id) async {
     try {
       //Client endPoint = Client();
       final ioc = new HttpClient();
