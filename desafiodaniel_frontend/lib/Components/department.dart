@@ -1,76 +1,96 @@
+import 'package:desafiodaniel_frontend/Utils/Providers/departments_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'buttonNavigation.dart';
+import '../Entities/department.dart';
+import '../Utils/Models/department_model.dart';
+import 'package:provider/provider.dart';
+import 'dart:async';
 
-class Department extends StatefulWidget {
-  Department({Key key, this.title}) : super(key: key);
+class DepartmentView extends StatefulWidget {
+  DepartmentView({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
   _DepartmentState createState() => _DepartmentState();
 }
 
-class _DepartmentState extends State<Department> {
+class _DepartmentState extends State<DepartmentView> {
+  List<Department> list = new List<Department>();
 
+  Future<void> repository() async {
+    DepartmentsProvider dp = new DepartmentsProvider();
+    List<Department> list2 = new List<Department>();
+    list2 = await dp.fetchAllDepartments();
+    setState(() {
+      list = list2;
+    });
+  }
 
+  @override
+  void initState() {
+    repository();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            child: Row(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.search,
-                    color: Colors.blue,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.blue,
+                ),
+              ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Procurar Departamento',
                   ),
                 ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Procurar Departamento',
-                    ),
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            child: Row(
-              children: <Widget>[
-                IconButton(
+        ),
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
                   icon: Icon(
                     Icons.add,
                     color: Colors.blue,
                   ),
                   onPressed: () {
-                    Navigator.pushNamed(context, '/AdicionarDepartamento');}
-                ),
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Adicionar Departamento',
-                    ),
+                    Navigator.pushNamed(context, '/AdicionarDepartamento');
+                  }),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Adicionar Departamento',
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Expanded(
-            child: ListView.builder(
-                padding: EdgeInsets.only(top: 10.0),
-                itemBuilder: buildItem,
-                itemCount: 3),
-          ),
-        ],
-      );
+        ),
+        Expanded(
+          child: ListView.builder(
+              padding: EdgeInsets.only(top: 10.0),
+              itemBuilder: (con, ind) {
+                return buildItem(con, ind, list);
+              },
+              itemCount: list.length),
+        ),
+      ],
+    );
   }
 }
 
-Widget buildItem(context, index) {
+Widget buildItem(context, index, list) {
   return Container(
     padding: EdgeInsets.all(10.0),
     margin: EdgeInsets.only(top: 5.0),
@@ -82,7 +102,7 @@ Widget buildItem(context, index) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text('Compras'),
+              Text(list[index].name),
               Text('3 projetos ativos'),
             ],
           ),
@@ -98,7 +118,9 @@ Widget buildItem(context, index) {
               ),
               IconButton(
                 icon: Icon(Icons.edit),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/AlterarDepto');
+                },
               )
             ],
           )

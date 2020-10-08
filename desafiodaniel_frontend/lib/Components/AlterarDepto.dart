@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
 
-class AdicionarDepartamento extends StatefulWidget {
+class AlterarDepto extends StatefulWidget {
   @override
-  _AdicionarDepartamentoState createState() => _AdicionarDepartamentoState();
-  static const routeName = '/AdicionarDepartamento';
+  _AlterarDeptoState createState() => _AlterarDeptoState();
+  static const routeName = '/AlterarDepto';
 }
 
-class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
-
-  void _adicionarDepartamento(){
-
-  }
+class _AlterarDeptoState extends State<AlterarDepto> {
+  void _adicionarDepartamento() {}
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: AppBar(
-          title: Text('Criar Departamento'),
+          title: Text('Alterar Departamento'),
           centerTitle: true,
         ),
-        body:
-          Padding(
+        body: Padding(
             padding: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0),
             child: Center(
               child: Column(
@@ -56,35 +52,32 @@ class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
                     ),
                   ),
                   Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FloatingActionButton(
-                          heroTag: "Check",
-                          onPressed: _adicionarDepartamento,
-                          child: Icon(Icons.cancel, size: 42.0,),
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FloatingActionButton(
+                        heroTag: "Check",
+                        onPressed: _adicionarDepartamento,
+                        child: Icon(
+                          Icons.cancel,
+                          size: 42.0,
                         ),
-                        SizedBox(
-                          width: 20.0,
+                      ),
+                      SizedBox(
+                        width: 20.0,
+                      ),
+                      FloatingActionButton(
+                        heroTag: "Cancel",
+                        onPressed: _adicionarDepartamento,
+                        child: Icon(
+                          Icons.check_circle,
+                          size: 42.0,
                         ),
-                        FloatingActionButton(
-                          heroTag: "Cancel",
-                          onPressed: _adicionarDepartamento,
-                          child: Icon(Icons.check_circle, size: 42.0,),
-                        ),
-                      ],
-
-                  )
-                  )
+                      ),
+                    ],
+                  ))
                 ],
-
               ),
-            )
-
-          )
-
-    );
-
-
+            )));
   }
 }

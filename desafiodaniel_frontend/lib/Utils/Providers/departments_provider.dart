@@ -4,7 +4,7 @@ import 'package:http/io_client.dart';
 import '../../Entities/department.dart';
 
 class DepartmentsProvider {
-  Future<List<Department>> fetchDepartments() async {
+  Future<List<Department>> fetchAllDepartments() async {
     try {
       //Client endPoint = Client();
       final ioc = new HttpClient();
@@ -31,7 +31,7 @@ class DepartmentsProvider {
     }
   }
 
-  Future<Department> fetchDepartment(String id) async {
+  Future<Department> fetchDepartmentById(String id) async {
     try {
       //Client endPoint = Client();
       final ioc = new HttpClient();

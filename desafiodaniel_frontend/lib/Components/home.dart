@@ -9,9 +9,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
   PageController _pageController = PageController();
-  List<Widget> _screens = [Department(), Projects(), Employee()];
+  List<Widget> _screens = [DepartmentView(), Projects(), Employee()];
 
   int _selectedIndex = 0;
   void _onPageChanged(int index) {
@@ -23,7 +22,6 @@ class _HomeState extends State<Home> {
   void _onItemTapped(int selectedIndex) {
     _pageController.jumpToPage(selectedIndex);
   }
-
 
   @override
   Widget build(BuildContext context) {

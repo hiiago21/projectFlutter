@@ -1,61 +1,51 @@
-import 'package:desafiodaniel_frontend/Entities/employee.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:intl/intl.dart';
 
+
 class AdicionarProjeto extends StatefulWidget {
-  static const routeName = '/AdicionarProjeto';
+
   @override
   _AdicionarProjetoState createState() => _AdicionarProjetoState();
+  static const routeName = '/AdicionarProjeto';
 }
 
 class _AdicionarProjetoState extends State<AdicionarProjeto> {
+  DateTime _selectDate;
+  bool monVal = false;
+  bool monVal2 = false;
 
-  Employee dropValue;
 
-  List<Employee> funcionarios = <Employee>[
-    Employee(1, "Hiago", "S", "1111", 1999.0),
-    Employee(2, "Hiago", "S", "1111", 1999.0),
-    Employee(3, "Hiago", "S", "1111", 1999.0),
-  ];
-
-  @override
-  void initState() {
-    dropValue=funcionarios[0];
-  }
-
-  DateTime _selectDateStart;
-  DateTime _selectDateFinal;
-
-  _showDatePickerFinal() {
+  _showDatePickerCriacao() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime(2003),
-        firstDate: DateTime(1900),
-        lastDate: DateTime.now() )
+            context: context,
+            initialDate: DateTime(2020),
+            firstDate: DateTime(2020),
+            lastDate: DateTime.now())
         .then((value) {
       if (value == null) {
         return;
       }
 
       setState(() {
-        _selectDateFinal = value;
+        _selectDate = value;
       });
     });
   }
 
-  _showDatePickerStart() {
+  _showDatePickerEntrega() {
     showDatePicker(
-        context: context,
-        initialDate: DateTime(2003),
-        firstDate: DateTime(1900),
-        lastDate: DateTime.now() )
+            context: context,
+            initialDate: DateTime(2020),
+            firstDate: DateTime(2020),
+            lastDate: DateTime.now())
         .then((value) {
       if (value == null) {
         return;
       }
 
       setState(() {
-        _selectDateStart = value;
+        _selectDate = value;
       });
     });
   }
@@ -64,14 +54,15 @@ class _AdicionarProjetoState extends State<AdicionarProjeto> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text('Cadastrar Funcionario'),
+        title: Text('Adicionar Projeto'),
         centerTitle: true,
       ),
-      body:
-      Padding(
-        padding: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0),
-        child:
-          Column(
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+        child: Container(
+          padding: new EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
                 child: Row(
@@ -88,69 +79,82 @@ class _AdicionarProjetoState extends State<AdicionarProjeto> {
                 ),
               ),
               Container(
-                child: Row(children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Descrição',
-                        labelStyle: TextStyle(fontSize: 16.0),
-                      ),
+                alignment: Alignment.topLeft,
+                child: FlatButton(
+                  textColor: Theme.of(context).primaryColor,
+                  child: Text(
+                    'Selecionar data de criação',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+                  onPressed: _showDatePickerCriacao,
+                ),
+              ),
+              Container(
+                alignment: Alignment.topLeft,
+                child: FlatButton(
+                  textColor: Theme.of(context).primaryColor,
+                  child: Text(
+                    'Selecionar data de entrega',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  onPressed: _showDatePickerEntrega,
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                    padding: EdgeInsets.only(top: 10.0),
+                    itemBuilder: buildItem,
+                    itemCount: 3),
+              ),
+              Center(
+                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  FloatingActionButton(
+                    heroTag: "BCancel",
+                    onPressed: () {},
+                    tooltip: 'Cancel',
+                    child: Icon(Icons.cancel),
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  FloatingActionButton(
+                    heroTag: "BCheck",
+                    onPressed: () {},
+                    tooltip: 'Check',
+                    child: Icon(Icons.check_circle),
                   )
                 ]),
-              ),
-              Container(
-                height: 70,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        _selectDateStart == null
-                            ? 'Data de Criação'
-                            : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectDateStart)}',
-                      ),
-                    ),
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        'Selecionar Data',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: _showDatePickerStart,
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 70,
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        _selectDateStart == null
-                            ? 'Data de Entrega'
-                            : 'Data Selecionada: ${DateFormat('dd/MM/yyyy').format(_selectDateFinal)}',
-                      ),
-                    ),
-                    FlatButton(
-                      textColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        'Selecionar Data',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      onPressed: _showDatePickerFinal,
-                    )
-                  ],
-                ),
-              ),
+              )
             ],
-          )
-        )
+          ),
+        ),
+      ),
     );
   }
 }
 
+Widget buildItem(context, index) {
+  return Container(
+    padding: EdgeInsets.all(10.0),
+    margin: EdgeInsets.only(top: 5.0),
+    decoration:
+    BoxDecoration(border: Border.all(color: Colors.blue, width: 2.0)),
+    child: Row(
+      children: <Widget>[
+    Expanded(
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text('Maria da Glória'),
+        Text('Projeto APP Legal'),
+      ],
+    ),
+    ),
+    ],
+  ),
+  );
+}

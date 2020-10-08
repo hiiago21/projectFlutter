@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class AdicionarFuncionario extends StatefulWidget {
+class AlterarFuncionario extends StatefulWidget {
   @override
-  _AdicionarFuncionarioState createState() => _AdicionarFuncionarioState();
-  static const routeName = '/AdicionarFuncionario';
+  _AlterarFuncionarioState createState() => _AlterarFuncionarioState();
+  static const routeName = '/AlterarFuncionario';
 }
 
-class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
+class _AlterarFuncionarioState extends State<AlterarFuncionario> {
   DateTime _selectDate;
 
   _showDatePicker() {
@@ -27,13 +27,13 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
     });
   }
 
-  void _adicionarFuncionario() {}
+  void _alterarFuncionario() {}
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text('Cadastrar Funcionario'),
+        title: Text('Alterar Funcionario'),
         centerTitle: true,
       ),
       body: Padding(
@@ -95,25 +95,23 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
                 ),
               ),
               Center(
-               child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FloatingActionButton(
-                        heroTag: "BCancel",
-                        onPressed: () {},
-                        tooltip: 'Cancel',
-                        child: Icon(Icons.cancel),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      FloatingActionButton(
-                        heroTag: "BCheck",
-                        onPressed: () {},
-                        tooltip: 'Check',
-                        child: Icon(Icons.check_circle),
-                      )
-                    ]),
+                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  FloatingActionButton(
+                    heroTag: "BCancel",
+                    onPressed: () {},
+                    tooltip: 'Cancel',
+                    child: Icon(Icons.cancel),
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  FloatingActionButton(
+                    heroTag: "BCheck",
+                    onPressed: () {},
+                    tooltip: 'Check',
+                    child: Icon(Icons.check_circle),
+                  )
+                ]),
               )
             ],
           ),

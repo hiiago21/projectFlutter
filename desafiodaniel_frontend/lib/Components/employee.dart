@@ -7,59 +7,58 @@ class Employee extends StatefulWidget {
 }
 
 class _EmployeeState extends State<Employee> {
-
   @override
   Widget build(BuildContext context) {
     return Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.search,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Procurar Funcionário',
-                      ),
-                    ),
-                  ),
-                ],
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.blue,
+                ),
               ),
-            ),
-            Container(
-              child: Row(
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(
-                      Icons.add,
-                      color: Colors.blue,
-                    ),
-                    onPressed: () {
-                    Navigator.pushNamed(context, '/AdicionarFuncionario');}
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Procurar Funcionário',
                   ),
-                  Expanded(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Adicionar Funcionário',
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            Expanded(
-              child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10.0),
-                  itemBuilder: buildItem,
-                  itemCount: 3),
-            ),
-        ],
+            ],
+          ),
+        ),
+        Container(
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                  icon: Icon(
+                    Icons.add,
+                    color: Colors.blue,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/AdicionarFuncionario');
+                  }),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Adicionar Funcionário',
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+              padding: EdgeInsets.only(top: 10.0),
+              itemBuilder: buildItem,
+              itemCount: 3),
+        ),
+      ],
     );
   }
 }
@@ -92,7 +91,9 @@ Widget buildItem(context, index) {
               ),
               IconButton(
                 icon: Icon(Icons.edit),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/AlterarFuncionario');
+                },
               )
             ],
           )
