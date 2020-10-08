@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'AdicionarFuncionario.dart';
-import 'adicionarDepto.dart';
-import 'adicionarProjeto.dart';
+import 'AdicionarDepto.dart';
+import 'AdicionarProjeto.dart';
 import 'AlterarDepto.dart';
 import 'AlterarFuncionario.dart';
 import 'home.dart';

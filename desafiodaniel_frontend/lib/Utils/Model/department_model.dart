@@ -1,4 +1,5 @@
 import 'package:desafiodaniel_frontend/Utils/Providers/departments_provider.dart';
+import '../../Entities/department.dart';
 
 class DepartmentModel {
   DepartmentsProvider dp = new DepartmentsProvider();
@@ -9,5 +10,13 @@ class DepartmentModel {
 
   getById(id) async {
     return await dp.fetchDepartmentById(id);
+  }
+
+  delete(id) async {
+    return await dp.deleteDepartmentById(id.toString());
+  }
+
+  post(Department dep) async {
+    return await dp.postDepartment(dep);
   }
 }

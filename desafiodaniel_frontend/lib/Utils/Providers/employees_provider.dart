@@ -15,7 +15,7 @@ class EmployeesProvider {
       // We can't use localhost inside an emulator.
       // Using localhost we get a SocketException.
       // We use the 10.0.2.2 ip to access the localhost inside the android VM.
-      final response = await http.get('http://10.0.2.2:5000/Employees');
+      final response = await http.get('https://10.0.2.2:5001/Employees');
       if (response.statusCode == 200) {
         Iterable l = json.decode(response.body);
         List<Employee> employees =
@@ -44,7 +44,7 @@ class EmployeesProvider {
       // We can't use localhost inside an emulator.
       // Using localhost we get a SocketException.
       // We use the 10.0.2.2 ip to access the localhost inside the android VM.
-      final response = await http.get('http://10.0.2.2:5000/Employees/$id');
+      final response = await http.get('https://10.0.2.2:5001/Employees/$id');
       if (response.statusCode == 200) {
         return Employee.fromJson(json.decode(response.body));
       } else if (response.statusCode == 404) {

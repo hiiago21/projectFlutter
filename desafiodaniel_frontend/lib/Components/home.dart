@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'projects.dart';
-import 'department.dart';
-import 'employee.dart';
+import 'projects_view.dart';
+import 'department_view.dart';
+import 'employee_view.dart';
 
 class Home extends StatefulWidget {
   @override

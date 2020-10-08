@@ -9,6 +9,8 @@ class AdicionarFuncionario extends StatefulWidget {
 
 class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
   DateTime _selectDate;
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _salaryController = TextEditingController();
 
   _showDatePicker() {
     showDatePicker(
@@ -27,7 +29,11 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
     });
   }
 
-  void _adicionarFuncionario() {}
+  void _addEmployee() {
+    String name = _nameController.text;
+    String salary = _salaryController.text;
+    String birthDate = DateFormat('y/MM/dd').format(_selectDate);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +58,7 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
                           labelText: 'Nome do funcionario',
                           labelStyle: TextStyle(fontSize: 16.0),
                         ),
+                        controller: _nameController,
                       ),
                     ),
                   ],
@@ -65,6 +72,7 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
                         labelText: 'Salário',
                         labelStyle: TextStyle(fontSize: 16.0),
                       ),
+                      controller: _salaryController,
                     ),
                   )
                 ]),
@@ -95,25 +103,29 @@ class _AdicionarFuncionarioState extends State<AdicionarFuncionario> {
                 ),
               ),
               Center(
-               child:  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      FloatingActionButton(
-                        heroTag: "BCancel",
-                        onPressed: () {},
-                        tooltip: 'Cancel',
-                        child: Icon(Icons.cancel),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      FloatingActionButton(
-                        heroTag: "BCheck",
-                        onPressed: () {},
-                        tooltip: 'Check',
-                        child: Icon(Icons.check_circle),
-                      )
-                    ]),
+                child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+                  FloatingActionButton(
+                    heroTag: "BCancel",
+                    onPressed: () {},
+                    tooltip: 'Cancel',
+                    child: Icon(
+                      Icons.cancel,
+                      size: 42.0,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  FloatingActionButton(
+                    heroTag: "BCheck",
+                    onPressed: _addEmployee,
+                    tooltip: 'Check',
+                    child: Icon(
+                      Icons.check_circle,
+                      size: 42.0,
+                    ),
+                  )
+                ]),
               )
             ],
           ),

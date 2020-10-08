@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:desafiodaniel_frontend/Utils/Model/department_model.dart';
+import '../Entities/department.dart';
 
 class AdicionarDepartamento extends StatefulWidget {
   @override
@@ -7,9 +9,17 @@ class AdicionarDepartamento extends StatefulWidget {
 }
 
 class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _descController = TextEditingController();
 
-  void _adicionarDepartamento(){
+  DepartmentModel dm = new DepartmentModel();
 
+  Future<void> _addDepartment() async {
+    String name = _nameController.text;
+    String description = _descController.text;
+    Department dep = new Department(0, name, description);
+    Department request = await dm.post(dep);
+    print(request.toString());
   }
 
   @override
@@ -19,8 +29,7 @@ class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
           title: Text('Criar Departamento'),
           centerTitle: true,
         ),
-        body:
-          Padding(
+        body: Padding(
             padding: EdgeInsets.fromLTRB(12.0, 18.0, 12.0, 0),
             child: Center(
               child: Column(
@@ -35,6 +44,7 @@ class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
                               labelText: 'Nome do departamento',
                               labelStyle: TextStyle(fontSize: 16.0),
                             ),
+                            controller: _nameController,
                           ),
                         ),
                       ],
@@ -50,41 +60,28 @@ class _AdicionarDepartamentoState extends State<AdicionarDepartamento> {
                               labelText: 'Descrição do departamento',
                               labelStyle: TextStyle(fontSize: 16.0),
                             ),
+                            controller: _descController,
                           ),
                         ),
                       ],
                     ),
                   ),
                   Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FloatingActionButton(
-                          heroTag: "Check",
-                          onPressed: _adicionarDepartamento,
-                          child: Icon(Icons.cancel, size: 42.0,),
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FloatingActionButton(
+                        heroTag: "Check",
+                        onPressed: _addDepartment,
+                        child: Icon(
+                          Icons.check_circle,
+                          size: 42.0,
                         ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        FloatingActionButton(
-                          heroTag: "Cancel",
-                          onPressed: _adicionarDepartamento,
-                          child: Icon(Icons.check_circle, size: 42.0,),
-                        ),
-                      ],
-
-                  )
-                  )
+                      ),
+                    ],
+                  ))
                 ],
-
               ),
-            )
-
-          )
-
-    );
-
-
+            )));
   }
 }

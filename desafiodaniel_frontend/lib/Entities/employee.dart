@@ -14,8 +14,18 @@ class Employee {
 
   int get id => _idEmployee;
   String get name => _name;
-  String get sex => _sex;
-  String get birthDate => _birthDate;
+  String get sex {
+    if (_sex == null) {
+      return "Não informado";
+    }
+    return _sex;
+  }
+
+  String get birthDate {
+    String birth = _birthDate.split("T")[0];
+    return birth;
+  }
+
   double get salary => _salary;
 
   @override
